@@ -1,10 +1,10 @@
-from string import ascii_lowercase
-def pangrams(s):
+def birthday(s, d, m):
+    # loop through S to find sums of D with the length of M
+    # outer loop to go through full array
+        # inner loop only iterates the length of M 
+            # check if the sum of those are equal to D 
+                # if so add to counter
+    # return counter 
 
-    lowered = s.lower()
-    for letter in ascii_lowercase:
-        if letter not in lowered:
-            print ("not pangram")
-    print ("pangram")
 
-pangrams("We promptly judged antique ivory buckles for the next prize")
+birthday([2,2,1,3,2], 4, 2)
