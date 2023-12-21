@@ -1,14 +1,10 @@
 from string import ascii_lowercase
 def pangrams(s):
-    # to lower the string
-    s.lower()
-    # loop through alphabet ascii
-    for letter in ascii_lowercase:
-    # check if the letter is in string
-        if letter not in s:
-    # if not return "not pangram"
-            return ("not pangram")
-    # end of loop reuturn "pangram"
-    return ("pangram")
 
-pangrams("The quick brown fox jumps over the lazy do")
+    lowered = s.lower()
+    for letter in ascii_lowercase:
+        if letter not in lowered:
+            print ("not pangram")
+    print ("pangram")
+
+pangrams("We promptly judged antique ivory buckles for the next prize")
