@@ -1,24 +1,20 @@
-def divisorGame(n):
-    # the number chosen has to be more than 0 and less than n 
-    # number chosen has to be modulus 0
-    # start loop from current n count down for most optimal
-    # alice goes first- figure out how to know if alice wins
-    # return true if alice wins
-
-    #init the current number the game is one 
-    currentNum = n
-    #set a counter to count down and find the highest possible modulus 0
-    counter = currentNum - 1
-    aliceTurn = True
-    while counter > 0:
-        # if found then remove from the current num
-        if (counter % n == 0) and counter > 0:
-            currentNum = currentNum - counter
+def longestPalindrome(s):
+    # loop through and make a hashmap of all the items
+    items = {}
+    evenCount = 0
+    for i in range(len(s)):
+        items[s[i]] = 1 + items.get(s[i],0)
+        # if item i not contained then init it
+        if items[s[i]] % 2 == 0:
+            evenCount +=1
+    # check hashmap for number of even numbers
+    if evenCount > 0:
+        if evenCount < len(s):
+            print(evenCount + 1)
         else: 
-            #someone won
-            if aliceTurn == True:
-                print(False)
-            else:
-                print(True)
-        counter = counter - 1
-divisorGame(2)
+            print(evenCount)
+    else: 
+        print(0)
+        
+    # if the amount of items in hashmap is even retunr than number, if odd then return that number
+longestPalindrome("abccccdd")
