@@ -1,38 +1,24 @@
-def findAnagrams(s, p):
-    positionArg=[]
-    hashP = {}
-    hashS ={}
-    if(len(s) < len(p)):
-        return positionArg
-    
-    for i in range(len(p)):
-        if p[i] in hashP:
-            hashP[p[i]] = hashP[p[i]] + 1
-        else:
-            hashP[p[i]] = 1
+def divisorGame(n):
+    # the number chosen has to be more than 0 and less than n 
+    # number chosen has to be modulus 0
+    # start loop from current n count down for most optimal
+    # alice goes first- figure out how to know if alice wins
+    # return true if alice wins
 
-    for i in range(len(p)):
-        if s[i] in hashS:
-            hashS[s[i]] = hashS[s[i]] + 1
-        else:
-            hashS[s[i]] = 1
-    if hashS == hashP: positionArg.append(0)
-
-
-    leftPoint = 0 
-    for rightPoint in range(len(p),len(s)):
-        hashS[s[rightPoint]] = 1 + hashS.get(s[rightPoint],0)
-        hashS[s[leftPoint]] -= 1 
-
-        if hashS[s[leftPoint]] == 0:
-            hashS.pop(s[leftPoint])
-        leftPoint +=1
-
-        if hashS == hashP: positionArg.append(leftPoint)
-    return positionArg
-
-
-
-
-
-findAnagrams("cbaebabacd","abc")
+    #init the current number the game is one 
+    currentNum = n
+    #set a counter to count down and find the highest possible modulus 0
+    counter = currentNum - 1
+    aliceTurn = True
+    while counter > 0:
+        # if found then remove from the current num
+        if (counter % n == 0) and counter > 0:
+            currentNum = currentNum - counter
+        else: 
+            #someone won
+            if aliceTurn == True:
+                print(False)
+            else:
+                print(True)
+        counter = counter - 1
+divisorGame(2)
