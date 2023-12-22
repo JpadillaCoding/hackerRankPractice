@@ -1,36 +1,38 @@
-def countGoodSubstrings(s):
-    # make siding door with size of 3 
-    # each addition check if the letter is contained
-    # if letter is contained then continue
-    # letter not contaiend add to counter
-    counter = 0
-    if len(s) < 3: 
-        return counter
-    for i in range(len(s)-2):
-        if(s[i]!=s[i+1] and s[i]!=s[i+2] and s[i+1]!=s[i+2]):
-            counter+=1
-    return(counter)
-countGoodSubstrings("aababcabc")
+def findAnagrams(s, p):
+    positionArg=[]
+    hashP = {}
+    hashS ={}
+    if(len(s) < len(p)):
+        return positionArg
+    
+    for i in range(len(p)):
+        if p[i] in hashP:
+            hashP[p[i]] = hashP[p[i]] + 1
+        else:
+            hashP[p[i]] = 1
+
+    for i in range(len(p)):
+        if s[i] in hashS:
+            hashS[s[i]] = hashS[s[i]] + 1
+        else:
+            hashS[s[i]] = 1
+    if hashS == hashP: positionArg.append(0)
+
+
+    leftPoint = 0 
+    for rightPoint in range(len(p),len(s)):
+        hashS[s[rightPoint]] = 1 + hashS.get(s[rightPoint],0)
+        hashS[s[leftPoint]] -= 1 
+
+        if hashS[s[leftPoint]] == 0:
+            hashS.pop(s[leftPoint])
+        leftPoint +=1
+
+        if hashS == hashP: positionArg.append(leftPoint)
+    return positionArg
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-"""     arrayLength = len(nums)
-    if arrayLength < k:
-        print(0)
-    for i in range(arrayLength):
-        subArr = nums[i:i+k]
-        if len(subArr) == 4: print(subArr) """
+findAnagrams("cbaebabacd","abc")
