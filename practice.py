@@ -1,14 +1,34 @@
-def birthday(s, d, m):
-    counter = 0
-    arrLen = len(s)
-    if arrLen < m:
-        return 0
-    for i in range(arrLen):
-        subArray = (s[i:i+m])
-        if len(subArray) == m:
-            if sum(subArray) == d:
-                counter += 1
-    return (counter)
+def findMaxAverage(nums, k):
+    # sliding window with length of k
+    # return the highest average number
+    arrayLength = len(nums)
+    for i in range(arrayLength):
+        subarray = nums[i:i+k]
+        if len(subarray) == 4: print(nums[i:i+k])
+
+findMaxAverage([1,12,-5,-6,50,3], 4)
 
 
-birthday([2,2,1,3,2], 4, 2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""     arrayLength = len(nums)
+    if arrayLength < k:
+        print(0)
+    for i in range(arrayLength):
+        subArr = nums[i:i+k]
+        if len(subArr) == 4: print(subArr) """
