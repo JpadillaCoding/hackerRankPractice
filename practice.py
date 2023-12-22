@@ -1,24 +1,19 @@
 def longestPalindrome(s):
     # loop through and make a hashmap of all the items
-    items = {}
-    evenCount = 0
-    if len(s) == 1 or len(s) == 2:
-        return 1
+    odd_count = 0
+    d = {}
 
-    for i in range(len(s)):
-        items[s[i]] = 1 + items.get(s[i],0)
-        # if item i not contained then init it
-        if items[s[i]] % 2 == 0:
-            evenCount +=1
-    # check hashmap for number of even numbers
-    evenCount = evenCount * 2
-    if evenCount > 0:
-        if evenCount < len(s):
-            return (evenCount + 1)
+    for ch in s:
+        if ch in d:
+            d[ch] += 1
         else: 
-            return (evenCount)
-    else: 
-        return (0)
-        
+            d[ch] = 1
+        if d[ch] % 2 != 0:
+            odd_count += 1
+        else:
+            odd_count -= 1
+        if odd_count > 1 :
+            return len(s) - odd_count + 1
+        return len(s)
     # if the amount of items in hashmap is even retunr than number, if odd then return that number
-longestPalindrome("abccccdd")
+longestPalindrome("arbccccdd")
