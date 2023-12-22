@@ -2,11 +2,14 @@ def findMaxAverage(nums, k):
     # sliding window with length of k
     # return the highest average number
     arrayLength = len(nums)
-    for i in range(arrayLength):
-        subarray = nums[i:i+k]
-        if len(subarray) == 4: print(nums[i:i+k])
+    largest_sum = sum(nums[:k])
 
-findMaxAverage([1,12,-5,-6,50,3], 4)
+    for i in range(1,arrayLength - k + 1):
+        if sum(nums[i:i+k]) > largest_sum:
+            largest_sum = sum(nums[i:i+k])
+    print(largest_sum / k)
+
+findMaxAverage([], 14538)
 
 
 
