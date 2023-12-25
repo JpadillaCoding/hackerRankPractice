@@ -1,22 +1,23 @@
-def maxSumTwoNoOverlap(nums, firstLen, secondLen):
-    # use one window to go through and find max
-    # when max is found make array with index points
-    # use second window to go through and find max. 
-    # if max is greater than current max also needs to not be in index.
-    firstLenMax = 0
-    firstLenIndeces = []
-    secondLenMax = 0
-    for i in range(len(nums)-firstLen+1):
-        windowMax = sum(nums[i: i+firstLen])
-        if windowMax > firstLenMax:
-            firstLenMax = windowMax
-            firstLenIndeces = []
-            for j in range(i, i+firstLen):
-                firstLenIndeces.append(j)
-            print(firstLenIndeces)
+def lengthOfLongestSubstring(s):
+    # make a for loop start at 0 end len
+    # use inner loop to keep looping until a unique addition cant be made to map
+    # inner loop should give a counter of how many additions can be made
+    maxCount = 0
+    for i in range(len(s)):
+        counter = 0
+        uniqueChar = {}
+        for j in range(i,len(s)):
+            if s[j] not in uniqueChar:
+                counter += 1
+                # add to the dict
+                uniqueChar[s[j]] = 0
+            else: 
+                # break out of current inner loop
+                break
+        if counter > maxCount:
+            maxCount = counter
+    print(maxCount)
+    # for effeciency add a check if the remainder is shorter than the maxcount
+    # end early in outer loop
 
-    for i in range(len(nums)-secondLen+1):
-        windowMax = sum(nums[i:i+secondLen])
-        if windowMax > firstLenMax:
-            
-maxSumTwoNoOverlap([3,8,1,3,2,1,8,9,0],3,2)
+lengthOfLongestSubstring('pwwkew')
