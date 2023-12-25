@@ -1,15 +1,17 @@
-def arrayPairSum(arr):
-    # Get the maximum number that can be made with all minumum pairs 
-    # easiest way to do this sort all
-    # check to make sort works here unlike js
-    # return the same of all pairs
-    # can increase time by adding algo to sort 
-    arr.sort()
-    total = 0
-    for i in range(0,len(arr),2):
-        total += arr[i]
-    print(total)
-arrayPairSum([6,2,6,5,1,2])
-# [6,2,6,5,1,2]
-    
+def countingbits(num):
 
+    # make a loop since of n 
+    # for n get the bit representition
+    # add up all ones with sum of string
+    # append to results array
+
+    resultsArray =[]
+    for i in range(num+1):
+        currentNum = '{0:b}'.format(i)
+        bitArray = []
+        for char in currentNum:
+            bitArray.append(int(char))
+        resultsArray.append(sum(bitArray))
+        return(resultsArray)
+
+countingbits(5)
