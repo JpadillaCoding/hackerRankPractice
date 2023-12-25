@@ -1,17 +1,16 @@
-def countingbits(num):
+def divisorSubstrings(num,k):
 
-    # make a loop since of n 
-    # for n get the bit representition
-    # add up all ones with sum of string
-    # append to results array
-
-    resultsArray =[]
-    for i in range(num+1):
-        currentNum = '{0:b}'.format(i)
-        bitArray = []
-        for char in currentNum:
-            bitArray.append(int(char))
-        resultsArray.append(sum(bitArray))
-        return(resultsArray)
-
-countingbits(5)
+    # make string into array 
+    stringNum = str(num)
+    splitNum = []
+    count = 0
+    for i in range(len(stringNum)): splitNum.append(stringNum[i])
+    # use k to get the "window" needed to 
+    for i in range(0,len(splitNum)-k+1):
+        currentNum = splitNum[slice(i,i+k)]
+        joinedNum = int(''.join(currentNum))
+        if joinedNum != 0 :
+            if num % joinedNum == 0:
+                count += 1
+    print(count)
+divisorSubstrings(240, 2)
