@@ -1,20 +1,22 @@
-def minimumRecolors(blocks,k):
-    #check if k is in block by multiplying the k by b 
-    # if not then loop 
-    # make a window of 7 looking for the container with the most amount of black
-    # loop in window to count b
-    # return the difference between highest and  k 
-    quickCheckSet = ''.join(['B']*k)
-    highestBlack = 0
-    if quickCheckSet in blocks:
-        print(0)
-    else: 
-        for i in range(len(blocks)-k+1):
-            window = blocks[i: i+k]
-            totalBlacks = 0
-            for char in range(len(window)):
-                if window[char] == 'B': totalBlacks += 1
-            if totalBlacks > highestBlack: highestBlack = totalBlacks
+def maxSumTwoNoOverlap(nums, firstLen, secondLen):
+    # use one window to go through and find max
+    # when max is found make array with index points
+    # use second window to go through and find max. 
+    # if max is greater than current max also needs to not be in index.
+    firstLenMax = 0
+    firstLenIndeces = []
+    secondLenMax = 0
+    for i in range(len(nums)-firstLen+1):
+        windowMax = sum(nums[i: i+firstLen])
+        if windowMax > firstLenMax:
+            firstLenMax = windowMax
+            firstLenIndeces = []
+            for j in range(i, i+firstLen):
+                firstLenIndeces.append(j)
+            print(firstLenIndeces)
 
-    print(k-highestBlack)
-minimumRecolors("WBWBBBW",2)
+    for i in range(len(nums)-secondLen+1):
+        windowMax = sum(nums[i:i+secondLen])
+        if windowMax > firstLenMax:
+            
+maxSumTwoNoOverlap([3,8,1,3,2,1,8,9,0],3,2)
