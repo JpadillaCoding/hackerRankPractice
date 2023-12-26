@@ -1,23 +1,22 @@
 def lengthOfLongestSubstring(s):
-    # make a for loop start at 0 end len
+    # make a for loop start at 0 end len of s
     # use inner loop to keep looping until a unique addition cant be made to map
     # inner loop should give a counter of how many additions can be made
-    maxCount = 0
-    for i in range(len(s)):
-        counter = 0
-        uniqueChar = {}
-        for j in range(i,len(s)):
-            if s[j] not in uniqueChar:
-                counter += 1
-                # add to the dict
-                uniqueChar[s[j]] = 0
-            else: 
-                # break out of current inner loop
-                break
-        if counter > maxCount:
-            maxCount = counter
-    print(maxCount)
-    # for effeciency add a check if the remainder is shorter than the maxcount
-    # end early in outer loop
+    n = len(s)
+    maxLength = 0
+    charSet = set()
+    left = 0
+    
+    for right in range(n):
+        if s[right] not in charSet:
+            charSet.add(s[right])
+            maxLength = max(maxLength, right - left + 1)
+        else:
+            while s[right] in charSet:
+                charSet.remove(s[left])
+                left += 1
+            charSet.add(s[right])
+    
+    return maxLength
 
-lengthOfLongestSubstring('pwwkew')
+lengthOfLongestSubstring('abcabcbb')
