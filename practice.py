@@ -1,22 +1,26 @@
-import collections
+def findContentChildren(g, s):
+    # already sorted? 
+    # make a satisfied variable
+    # start with the smallest greed (g)
+        # check if the size (s) is equal or greater to g 
+        # +1 to satisfied 
+        # else return satisfied
+    # how to traverse? 
+    # outer loop looking at g 
+    # inner loop looking at s and updating its position
+    s.sort()
+    s.sort()
+    satisfied = 0 
+    jStart = 0
+    for i in range(len(g)):
 
-def checkInclusion(s1: str, s2: str):
-    s1Chars = collections.Counter()
-    windowLen = len(s1)
-    # make a loop to subtract from counter all current items
-    for i in range(len(s2)):
-        # remove current iteration from count 
-        if s2[i] in s1Chars:
-            s1Chars[s2[i]] -=1
-        # add previous index char back into the counter if it exist
-            # check if the index is the same of moe than s1
-            # check if it is in the counter 
-        if i >= windowLen and s2[i-windowLen] in s1Chars:
-            s1Chars[s2[i-windowLen]] += 1
-            # add back into the counter
+        for j in range(jStart,len(s)):
+            if s[j] >= g[i]:
+                satisfied +=1
+                jStart +=1
+                break
+            else:
+                jStart += 1
+    print(satisfied)
 
-        # check if there is a match 
-        if all([s1Chars[i] == 0 for i in s1Chars]):
-            print(True)
-    print(False)
-checkInclusion("adc", "dcda")
+findContentChildren([1,2],[1,2,3])
