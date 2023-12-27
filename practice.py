@@ -1,41 +1,48 @@
-def characterReplacement(s,k):
-    # make a max count starting at 0 
-    # keep track of the most popular letter
-    # the window permits only 2 deviations from popular letter 
-      # possibly do this by removing 2 from window and comparing from most popular
-    # keep updating max as long as that condition is met  
-    # if not met then move window over by 1 
-    # AABABBA
-    # start k + i 
-    # check for most popular 
-    # AA most popular A max of 2
-    # increase window 
-    # AAB stil valid because lenght- k = most popular max of 3
-    # AABA still valid because length - k = most popular max of 4 
-    # AABAB not valid because length - k > most popular max of 4 
-    # slide window over ABAB maintain the max window size. invalid because max is 2.
-    # slide window over BABB. valid because most popular letter length - k = most popular letter 4
-    # BABBA invalid bc length - k > most popular letter 
+def checkInclusion(s1: str, s2: str):
+    # make a window the size of s1
+    # slide one by one and check window if it contains all the letters
+        # make a dict with all the letters in the current window and amount
+        # compare each iteration between the window and s1
+    childStringLen = len(s1)
+    ParentStringLen = len(s2)
+    childCharCount = {}
+    parentCharCount = {}
 
-    maxCount = 0
-    left = 0 
-    arrLen = len(s)
-    characters = {}
-    for right in range(arrLen):
-        if s[right] not in characters:
-            characters[s[right]] = 1
+    #make edge case in case s1 is longer than s2 to return false
+    if childStringLen > ParentStringLen:
+        print(False)
+    for char in range(childStringLen):
+        if s1[char] in childCharCount:
+            childCharCount[s1[char]] += 1
         else:
-            characters[s[right]] += 1
-        window = right - left + 1
-        #get window
-        # compare most popular + k 
-        if max(characters.values()) + k >= window:
-            maxCount = max(maxCount, window)
-        # if equal or more than my window size, make the max count this current amount
-        else: 
-            characters[s[left]] -= 1
-            left += 1
-        # if less than window size, move left by one and update my charc count
-    print(maxCount)
+            childCharCount[s1[char]] = 1
+    
+    for char in range(childStringLen):
+        # establish the first childStringLen amount of charc in s2
+        if s2[char] in parentCharCount:
+            parentCharCount[s2[char]] += 1
+        else:
+            parentCharCount[s2[char]] = 1
+    # now check the initial sets
+    if childCharCount == parentCharCount:
+        print(True)
 
-characterReplacement('ABAB', 2)
+    # now loop through and add the current itieration of s2
+    for char in range(childStringLen,ParentStringLen):
+        if s2[char] in parentCharCount:
+            parentCharCount[s2[char]] += 1
+        else:
+            parentCharCount[s2[char]] = 1
+    # remove the left pointer from the parent dict 
+        parentCharCount[s2[char-childStringLen]] -= 1
+        if parentCharCount[s2[char-childStringLen]] == 0:
+            parentCharCount.pop(s2[char-childStringLen])
+    # if the left pointers char ==0 then remove the letter from dict
+    # now compare the 2 dicts
+        if (childCharCount == parentCharCount):
+            print(True)
+        # if they match return true 
+    # keep looping, end of loop return false
+    print(False)
+    # edge case for len of 1 on s2 and s1?
+checkInclusion("adc", "dcda")
