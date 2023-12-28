@@ -1,15 +1,25 @@
-def largestPerimeter(nums):
-    # addition of any 2 sides is grreater than 3rd side
-    # start with 3 biggest numbers
-    # sort(reverse = true)
-    # loop through
-    nums.sort(reverse=True) 
-    for a in range(len(nums)-2):
-        if (nums[a] + nums[a+1] > nums[a+2]) and (nums[a] + nums[a+2] > nums[a+1]) and (nums[a+1] + nums[a+2] > nums[a]):
-            print(nums[a]+nums[a+1]+nums[a+2])
-    print(0)
-    
+def largestSumAfterKNegations(nums, k):
+    # sort the numbers
+    # sub the lowest num with a - 
+    # flip any negative numbers 
+        # now continue to flip the smallest number k times
+    nums.sort()
+    counter = k
+    smallest = nums[-1]
+    for i in range(len(nums)):
+        if counter > 0 and nums[i] < 0:
+            # compare new value with smallest and repalce
+            nums[i] = -nums[i]
+            counter -= 1
+            if smallest > nums[i]:
+                smallest = i
+        else : break
+    nums.sort()
+    while counter > 0:
+        nums[0] = -nums[0]
+        counter -= 1
+    print(sum(nums))
+    # keep flipping smallest
 
 
-largestPerimeter([2,1,2])
-    
+largestSumAfterKNegations([3,-1,0,2],3)
