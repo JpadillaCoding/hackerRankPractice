@@ -1,11 +1,39 @@
-def canPlaceFlowers(flowerbed, n: int):
-    counter = 0
-    if n == 0: 
-        print(True)
-    for plot in range(len(flowerbed)):
-        if flowerbed[plot] == 0 and (plot == 0 or flowerbed[plot - 1] == 0) and (plot == len(flowerbed)-1 or flowerbed[plot + 1] == 0):
-            flowerbed[plot] = 1
-            counter += 1 
-            if counter == n: print(True) 
-    print(False)
-canPlaceFlowers([0,0,0,0,1], 2)
+import math
+def validPalindrome(s):
+    # needs to read the same forward and back
+    stringLen = len(s)
+    # make descrpency counter
+    descrepency = 0
+    left = 0 
+    right = len(s) -1
+    # if even then add evenly both sides 
+    if stringLen % 2 == 0:
+        #double pointer system 
+        for left in range(stringLen // 2):
+            if s[left] != s[right]:
+                descrepency += 1
+            right -= 1
+            if descrepency > 1:
+                print(False)
+        if descrepency <= 1:
+            print(True)
+        else:
+            print(False)
+    #else:
+    # if odd then half from left and right of middle
+    else: 
+        for left in range(math.floor(stringLen//2)-1):
+            if s[left] != s[right]:
+                descrepency += 1
+            right -=1
+            if descrepency > 1:
+                print(False)
+        if descrepency <= 1:
+            print(True)
+        else:
+            print(False)
+        # if descrepency counter <= 1
+            #return True
+        # else False
+
+validPalindrome('adcdcba')
