@@ -1,20 +1,31 @@
-def findContentChildren(g, s):
-    # double pointer system left is g right is s 
-    # 
-    g.sort()
-    s.sort()
-
-    left = 0 
-    right = 0 
+def canPlaceFlowers(flowerbed, n: int):
+    # single loop that checks if i+1 and i-1 and i are 0's 
+    # add to counter
+    # if counter == n then print true
     counter = 0
-
-    while left < len(g) and right < len(s):
-        # while loop on left to move by one 
-        if s[right] >= g[left]:
+    if len(flowerbed) > 2:
+        for plot in range(0,len(flowerbed)-1):
+            if plot == 0:
+                if flowerbed[plot] == 0 and flowerbed[plot + 1] == 0:
+                    counter += 1
+                    flowerbed[plot] = 1
+            if flowerbed[plot] == 0 and flowerbed[plot - 1] == 0 and flowerbed[plot + 1] == 0:
+                counter += 1
+                flowerbed[plot] = 1
+        if flowerbed[0] == 0 and flowerbed[1] == 0:
             counter += 1
-            right +=1
-        left += 1
-    print(counter)
-        
+        if flowerbed[-1] == 0 and flowerbed[-2] == 0:
+            counter += 1
+    elif len(flowerbed) == 2: 
+        if flowerbed[0] == 0 and flowerbed[1] == 0:
+            counter += 1
+    else:
+        if flowerbed[0] == 0:
+            counter += 1
+    if counter >= n:
+        print(True)
+    print(False)
 
-findContentChildren([1,2],[1,2,3])
+    # edge case of index 0 and -1 having 0 with -2 and 1 having 0 then + 1 
+    # check last 
+canPlaceFlowers([0,0,0,0,1], 2)
