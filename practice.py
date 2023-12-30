@@ -1,26 +1,19 @@
-def canThreePartsEqualSum(arr):
-    # get the total of the array 
-    # if the total can't be divided into 3 equas parts,
-    # return False since it's impossible to parition
-    # get the amount needed for 1/3 of a part
-    # track the amount of partitions. If 1 is found reset the partition total
-    # if a second parition is found, verify the remaining amount if in fact == to avg
-    total = sum(arr)
-    if total % 3 != 0:
-        print(False)
-    avg = total // 3 
-    paritionTotal = 0
-    partitions = 0
+def balancedStringSplit(s):
+    # loop through with a count of r and l 
+    # when r.len == l.len make counter + 1
+    # reset l and r count
+    rCount = 0
+    lCount = 0
+    balanceCount = 0
+    for char in range(len(s)):
+        if s[char] == 'R':
+            rCount +=1
+        else:
+            lCount +=1
+        if rCount == lCount:
+            balanceCount +=1
+            lCount = 0
+            rCount = 0
+    print(balanceCount)
 
-    for i in range(len(arr)-1):
-        paritionTotal += arr[i]
-        if paritionTotal == avg:
-            if partitions == 1 and sum(arr[i+1:]) == avg:
-                print(True)
-                break
-            partitions +=1
-            paritionTotal = 0
-    print(False)
-
-
-canThreePartsEqualSum([0,2,1,-6,6,-7,9,1,2,0,1])
+balancedStringSplit('LLLLRRRR')
