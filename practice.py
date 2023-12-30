@@ -1,25 +1,24 @@
-def largestSumAfterKNegations(nums, k):
-    # sort the numbers
-    # sub the lowest num with a - 
-    # flip any negative numbers 
-        # now continue to flip the smallest number k times
-    nums.sort()
-    counter = k
-    smallest = nums[-1]
-    for i in range(len(nums)):
-        if counter > 0 and nums[i] < 0:
-            # compare new value with smallest and repalce
-            nums[i] = -nums[i]
-            counter -= 1
-            if smallest > nums[i]:
-                smallest = i
-        else : break
-    nums.sort()
-    while counter > 0:
-        nums[0] = -nums[0]
-        counter -= 1
-    print(sum(nums))
-    # keep flipping smallest
+def canThreePartsEqualSum(arr):
+    # left pointer start at 0 
+    # right pointer start at -2 
+    # check if 0- left pointer = right pointer total
+        # check if [0-left] = [left - right] = [right - -1]
+    # move left + 1 
+    # move right - 1
+    left = 0 
+    right = len(arr) - 2
+    if len(arr) < 3: 
+        print(False) 
 
+    while left < right:
+        if sum(arr[:left]) == sum(arr[left+1:right]) == sum(arr[right:-1]):
+            print(True, sum(arr[:left]), sum(arr[left:right]), sum(arr[right:-1]))
+        else:
+            left += 1
+            right -= 1
+    print(False)
 
-largestSumAfterKNegations([3,-1,0,2],3)
+# edge cases:
+    # length < 3 == false
+    # length == 3 check [0] == [1] == [2]
+canThreePartsEqualSum([0,2,1,-6,6,-7,9,1,2,0,1])
