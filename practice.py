@@ -1,13 +1,17 @@
-def maximum69Number (num):
-    # loop through and swap first 6 I come across.
-    # keep track of the last 9 index
-    # if no 6 was flipped then flip the 9 
-    arg = list(str(num))
-    for number in range(len(arg)):
-        if arg[number] == '6':
-            arg[number] = '9'
-            print(int(''.join(arg)))
-    print(int(''.join(arg)))
+def minSubsequence(nums):
+    # given an array find which set of numbers returns a greater value than rest
+    # set the total sum
+    # sort reverse to count highest digits first
+    # loop through and compare the count with the total sum
+        # if greater return the subarray
+    total = sum(nums)
+    subTotal = 0
+    nums.sort(reverse = True)
+    for digit in range(len(nums)):
+        subTotal += nums[digit]
+        total -= nums[digit]
+        if subTotal > total:
+            print(nums[:digit+1])
+    print(nums)
 
-
-maximum69Number(9999)
+minSubsequence([4,4,7,6,7])
