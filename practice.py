@@ -1,24 +1,35 @@
 def canThreePartsEqualSum(arr):
-    # left pointer start at 0 
-    # right pointer start at -2 
-    # check if 0- left pointer = right pointer total
-        # check if [0-left] = [left - right] = [right - -1]
-    # move left + 1 
-    # move right - 1
-    left = 0 
-    right = len(arr) - 2
-    if len(arr) < 3: 
-        print(False) 
-
+    # conditions that need to be met:
+    # sum must be modulo 3 
+    # only way to divide by 3 is every sum being the same
+    # find the amount the array neesd rto be dvided by (avg)
+    # do while 
+    # move left pointer until the avg number is found
+    # move the right pointer until the avg num is found backwards
+    # check if left middle and right are equal
+    total = sum(arr)
+    if total % 3 != 0:
+        print(False)
+    avg = total // 3 
+    left = 1
+    leftFlipped = False
+    right = len(arr) - 1
+    rightFlipped = False
     while left < right:
-        if sum(arr[:left]) == sum(arr[left+1:right]) == sum(arr[right:-1]):
-            print(True, sum(arr[:left]), sum(arr[left:right]), sum(arr[right:-1]))
-        else:
+        leftsum = sum(arr[:left])
+        rightsum = sum(arr[right:])
+        if leftsum != avg:
             left += 1
+        else:
+            leftFlipped = True
+        if rightsum != avg:
             right -= 1
+        else:
+            rightFlipped = True
+        if leftFlipped and rightFlipped and sum(arr[left:right]) == avg:
+            print(True)
+        elif leftFlipped and rightFlipped:
+            print(False)
+            break
     print(False)
-
-# edge cases:
-    # length < 3 == false
-    # length == 3 check [0] == [1] == [2]
 canThreePartsEqualSum([0,2,1,-6,6,-7,9,1,2,0,1])
