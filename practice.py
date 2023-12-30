@@ -1,19 +1,13 @@
-def balancedStringSplit(s):
-    # loop through with a count of r and l 
-    # when r.len == l.len make counter + 1
-    # reset l and r count
-    rCount = 0
-    lCount = 0
-    balanceCount = 0
-    for char in range(len(s)):
-        if s[char] == 'R':
-            rCount +=1
-        else:
-            lCount +=1
-        if rCount == lCount:
-            balanceCount +=1
-            lCount = 0
-            rCount = 0
-    print(balanceCount)
+def maximum69Number (num):
+    # loop through and swap first 6 I come across.
+    # keep track of the last 9 index
+    # if no 6 was flipped then flip the 9 
+    arg = list(str(num))
+    for number in range(len(arg)):
+        if arg[number] == '6':
+            arg[number] = '9'
+            print(int(''.join(arg)))
+    print(int(''.join(arg)))
 
-balancedStringSplit('LLLLRRRR')
+
+maximum69Number(9999)
