@@ -1,19 +1,16 @@
-def generate(numRows: int):
-    # make the initial triangle since always starts with 1 
-    # 2 loops. one for the subarray
-    # keep track of the previous array
-    # start the new row with 1 always and append 1 at end always
-
+def getRow(rowIndex: int):
+    #considering it can be 0 
     triangle = [[1]]
-    for i in range(1,numRows):
-        prev_row = triangle[-1] # access last item 
-        new_row = [1] # start with 1 since they all do
-
-        for j in range(1,len(prev_row)):
-            new_row.append(prev_row[j-1] + prev_row[j])
-            print(prev_row)
-        new_row.append(1)
-        triangle.append(new_row)
-        print(triangle)
-
-generate(5)
+    if rowIndex == 0:
+        return triangle[0]
+    for i in range(0,rowIndex):
+        # outer loop to keep track of the prev row, the last row
+        # since we're adding on top each iteration
+        prevRow = triangle[-1]
+        curRow = [1] # start with 1 since triangle always does
+        for j in range(1,len(prevRow)):
+            curRow.append(prevRow[j-1] + prevRow[j])
+        curRow.append(1)
+        triangle.append(curRow)
+    print(triangle[rowIndex])
+getRow(3)
