@@ -1,25 +1,19 @@
-from typing import List
-def maxArea(height):
-    # find the max area of between two indeces 
-    # width = rightPoint - LeftPoint
-    # the height will always be the lower of the 2 
-    # have left and right pointer that move on case:
-        # whichever side has the smaller of 2 heights, move by 1 
-        # keep track of max
+def generate(numRows: int):
+    # make the initial triangle since always starts with 1 
+    # 2 loops. one for the subarray
+    # keep track of the previous array
+    # start the new row with 1 always and append 1 at end always
 
-    maxFound = 0
-    right = len(height) - 1
-    left = 0 
+    triangle = [[1]]
+    for i in range(1,numRows):
+        prev_row = triangle[-1] # access last item 
+        new_row = [1] # start with 1 since they all do
 
-    while left < right:
-        if height[left] > height[right]:
-            maxFound = max(maxFound,height[right] * (right - left))
-            right -= 1 
-        else:
-            maxFound = max(maxFound,height[left] * (right - left))
-            left += 1
+        for j in range(1,len(prev_row)):
+            new_row.append(prev_row[j-1] + prev_row[j])
+            print(prev_row)
+        new_row.append(1)
+        triangle.append(new_row)
+        print(triangle)
 
-    print(maxFound)
-    
-
-maxArea([1,1])
+generate(5)
