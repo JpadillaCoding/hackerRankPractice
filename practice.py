@@ -1,6 +1,6 @@
-def sum(n):
-    if n == 0:
-        return 0
-    else: 
-        return n + sum(n - 1)
-sum(5)
+def fib(n: int) -> int:
+    #base case is 0
+    if n == 0: return 0 
+    if n == 1: return 1
+    return fib(n-1) + fib(n-2)
+fib(3)
