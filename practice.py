@@ -1,6 +1,12 @@
 def fib(n: int) -> int:
-    #base case is 0
-    if n == 0: return 0 
-    if n == 1: return 1
-    return fib(n-1) + fib(n-2)
+    nums = []
+    for i in range(n+1):
+    #add the current and previous to the array 
+        if i == 1: 
+            nums.append(1)
+        elif i == 0:
+            nums.append(0)
+        else:
+            nums.append(nums[i-1] + nums[i-2])
+    print(nums[-1])
 fib(3)
