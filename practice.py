@@ -1,21 +1,26 @@
-def twoSum(numbers,target):
-    # have a left pointer at 0 and a right pointer at last num
-    # if left + right == target return indices + 1 on each
-    # if target is less, decrease right pointer 
-    # if target is more than, increase left pointer
+def threeSum(nums):
+    # find instances in the array where all three added up = 0 
+    # itirate through each number
+    # for each itieration the remainign tow use two pointer system 
+    # use comparison of adding the remainders together is more than 0, reduce right
+    # if less than 0, increase left
+    # check if the set is already made
+    nums.sort()
+    triplets = []
+    for i in range(len(nums) - 1):
+        if nums[i] == 0: print(triplets)
+        left = i + 1
+        right = len(nums) - 1
+        while left < right:
+            if nums[i] + nums[left] + nums[right] == 0:
+                if [nums[i], nums[left], nums[right]] not in triplets:
+                    triplets.append([nums[i], nums[left], nums[right]])
+                left += 1
+            elif nums[i] + nums[left] + nums[right] < 0:
+                left += 1
+            else: 
+                right -= 1
+    print(triplets)
 
-
-    left = 0 
-    right = len(numbers) -1 
-
-    while left < right:
-
-        if numbers[left] + numbers[right] == target:
-            print ([left+1,right+1])
-            break
-        elif numbers[left] + numbers[right] < target:
-            left += 1
-        else:
-            right -= 1
-
-twoSum([-1,0], -1)
+    # return the triplets as their values in arrays. multiple are possible
+threeSum([0,0,0])
