@@ -1,18 +1,14 @@
-import re
-def isPalindrome(s):
-    # lowercase all chars
-    # trim all non letters and nums
+def twoSum(numbers,target):
+    # find if the target can be found with two nums in array
+    # itirate through array, and subtract what we're looking for from current i
+    # if that num is contaiend in the array continue to find index
+    # else continue to next itiration
 
-    trimmedString = re.sub('[\W_]+', '', s).lower()
-    left = 0
-    right = len(trimmedString)-1
+    for i in range(len(numbers)):
+        findNum = target - numbers[i]
+        if findNum in numbers:
+            for j in range(i+1,len(numbers)):
+                if numbers[j] == findNum:
+                    print([i+1,j+1])
 
-    while left < right:
-        if trimmedString[left] == trimmedString[right]:
-            left += 1
-            right -= 1
-        else:
-            print(False)
-    print(True)
-
-isPalindrome(" ")
+twoSum([-1,0], -1)
