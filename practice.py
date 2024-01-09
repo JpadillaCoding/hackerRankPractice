@@ -1,14 +1,21 @@
 def twoSum(numbers,target):
-    # find if the target can be found with two nums in array
-    # itirate through array, and subtract what we're looking for from current i
-    # if that num is contaiend in the array continue to find index
-    # else continue to next itiration
+    # have a left pointer at 0 and a right pointer at last num
+    # if left + right == target return indices + 1 on each
+    # if target is less, decrease right pointer 
+    # if target is more than, increase left pointer
 
-    for i in range(len(numbers)):
-        findNum = target - numbers[i]
-        if findNum in numbers:
-            for j in range(i+1,len(numbers)):
-                if numbers[j] == findNum:
-                    print([i+1,j+1])
+
+    left = 0 
+    right = len(numbers) -1 
+
+    while left < right:
+
+        if numbers[left] + numbers[right] == target:
+            print ([left+1,right+1])
+            break
+        elif numbers[left] + numbers[right] < target:
+            left += 1
+        else:
+            right -= 1
 
 twoSum([-1,0], -1)
