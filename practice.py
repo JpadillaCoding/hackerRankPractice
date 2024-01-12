@@ -4,29 +4,32 @@ class ListNode:
         self.next = None
 
 def mergeTwoLists(list1: [ListNode], list2: [ListNode]):
-# needs to be sorted
-# return the head of the new one
-    # traverse list 
-    # if list1[i] > list2[i]:
-        # move list2[i] next to head of list1[i] 
-    # elif move list1[i] next to head of list2[i]
-    # else just do the if 
-    # consider the fact one list can run out and the other doesn't
-    dummy = ListNode(0)
-    tail = dummy
+    #start with a dummy to reference the head
+    #make a current to track the path
+    dummy = ListNode()
+    curr = dummy
+
+    #as long as both list are not null then keep looping
     while list1 and list2:
+        #compare values
         if list1.value < list2.value:
-            tail.next = list1
+            curr.next = list1
+            #move pointer on modified list to next item
             list1 = list1.next
-        else:
-            tail.next = list2
+        else: 
+            curr.next = list2
             list2 = list2.next
-        tail = tail.next
+        # make sure curr is on the next node just added
+        curr = curr.next
+    #when finished check if there are any remaining values in eihter linked list and point to its head
     if list1:
-        tail.next = list1
+        curr.next = list1
     elif list2:
-        tail.next = list2
+        curr.next = list2
+        
     return dummy.next
+#return head of list
+    
 
 list1 = ListNode(1)
 list1.next = ListNode(2)
