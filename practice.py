@@ -7,18 +7,16 @@ def sortedSquares(nums):
         # in this list start with left pointer at start and right pointer at end.
             # sort as i go
     # what if when we find the one that is greater than that's the only one that moves
-    squares = []
+    squares = [0] * len(nums)
     left = 0
     right = len(nums) - 1
     while left <= right:
-        leftSquare = nums[left] * nums[left]
-        rightSquare = nums[right] * nums[right]
 
-        if leftSquare > rightSquare:
-            squares.insert(0,leftSquare)
+        if abs(nums[left]) > abs(nums[right]):
+            squares[right - left] = nums[left] * nums[left]
             left += 1 
         else:
-            squares.insert(0,rightSquare)
+            squares[right-left] = nums[right] * nums[right]
             right -=1
     print(squares) 
 sortedSquares([-4,-1,0,3,10])
