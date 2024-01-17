@@ -7,14 +7,9 @@ def moveZeroes(nums):
         # make while loop- if the operation finds zero-
         # delete the zero but dont itirate forward
         # if a num is found then itierate forward
-    i = 0
-    length = len(nums)
-    while i < length - 1:
-        if nums[i] == 0:
-            del nums[i]
-            nums.append(0)
-            length -= 1
-        else:
-            i += 1
-    print(nums)
+    anchor = 0
+    for explorer in range(len(nums)):
+        if nums[explorer] != 0:
+            nums[anchor], nums[explorer] = nums[explorer], nums[anchor]
+            anchor += 1
 moveZeroes([0,1,0,3,12])
