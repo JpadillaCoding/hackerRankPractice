@@ -1,23 +1,26 @@
 def threeSumClosest(nums,target):
-# do a for loop to through each iteration 
-    # a while loop to use tow pointers to check everything inbetween
-    # a min variable that keeps track of closest amount
-        # find closest amount with min(all 3 - target, currrent min)
-            # use absolute after the different is found to negate negatives
-    closest = abs((nums[0] + nums[1] + nums[-1]) - target)
-    sumTotal = nums[0] + nums[1] + nums[-1]
+# sort the array,
+# use for loop to go through each number
+    # if target is currentSum < target: start += 1
+    nums.sort()
+    diff = float('inf')
+    answer = float('inf')
 
-    for i in range(len(nums)):
-        left = i + 1
-        right = len(nums) - 1
+    for i in range(len(nums)-1):
+        start = i + 1
+        end = len(nums) - 1
 
-        while left < right:
-            if abs((nums[i] + nums[left] + nums[right]) - target) < closest:
-                closest = abs((nums[i] + nums[left] + nums[right]) - target)
-                sumTotal = nums[i] + nums[left] + nums[right]
-            if target < closest:
-                right -= 1
+        while start < end:
+            currentSum = nums[i] + nums[start] + nums[end]
+            if currentSum == target:
+                return target
+            elif abs(currentSum - target) < diff:
+                diff = abs(currentSum - target)
+                answer = currentSum
+            if target < currentSum:
+                end -= 1
             else:
-                left += 1
-    print(sumTotal)
-threeSumClosest([1,1,1,0],100)
+                start += 1
+    return(answer)
+
+threeSumClosest([4,0,5,-5,3,3,0,-4,-5],-2)
