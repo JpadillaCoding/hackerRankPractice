@@ -1,26 +1,32 @@
-def threeSumClosest(nums,target):
-# sort the array,
-# use for loop to go through each number
-    # if target is currentSum < target: start += 1
-    nums.sort()
-    diff = float('inf')
-    answer = float('inf')
-
-    for i in range(len(nums)-1):
-        start = i + 1
-        end = len(nums) - 1
-
-        while start < end:
-            currentSum = nums[i] + nums[start] + nums[end]
-            if currentSum == target:
-                return target
-            elif abs(currentSum - target) < diff:
-                diff = abs(currentSum - target)
-                answer = currentSum
-            if target < currentSum:
-                end -= 1
-            else:
-                start += 1
-    return(answer)
-
-threeSumClosest([4,0,5,-5,3,3,0,-4,-5],-2)
+def numSubarrayProductLessThanK(nums, k):
+    # need to check for all sub arrays that the product is less than k
+    # for loop start at 0
+    # while loop end and goes backwards
+    end = len(nums) - 1
+    count = 0
+    for i in range(len(nums)):
+        # forward exploration 
+        explorer = i
+        currentProd = nums[i]
+        if currentProd < k:
+            count += 1
+        while explorer < end:
+            explorer += 1
+            currentProd = currentProd * nums[explorer]
+            # optimzation of if it is product => k:
+                # get out of while loop
+            if currentProd < k:
+                count += 1
+    print(count)
+numSubarrayProductLessThanK([10,5,2,6], 100)
+"""     
+    10 5 2 6
+    10 5 2
+    10 5
+    10
+    5 2 6
+    5 2
+    5
+    2 6
+    2
+    6 """
