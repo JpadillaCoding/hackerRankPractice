@@ -1,32 +1,24 @@
-def numSubarrayProductLessThanK(nums, k):
-    # need to check for all sub arrays that the product is less than k
-    # for loop start at 0
-    # while loop end and goes backwards
-    end = len(nums) - 1
-    count = 0
+def sortColors(nums):
+    zero = 0
+    one = 0
+    two = 0
+
     for i in range(len(nums)):
-        # forward exploration 
-        explorer = i
-        currentProd = nums[i]
-        if currentProd < k:
-            count += 1
-        while explorer < end:
-            explorer += 1
-            currentProd = currentProd * nums[explorer]
-            # optimzation of if it is product => k:
-                # get out of while loop
-            if currentProd < k:
-                count += 1
-    print(count)
-numSubarrayProductLessThanK([10,5,2,6], 100)
-"""     
-    10 5 2 6
-    10 5 2
-    10 5
-    10
-    5 2 6
-    5 2
-    5
-    2 6
-    2
-    6 """
+        if nums[i] == 0:
+            zero += 1
+        if nums[i] == 1:
+            one += 1
+        if nums[i] == 2:
+            two += 1
+    for i in range(len(nums)):
+        if zero > 0:
+            nums[i] = 0
+            zero -= 1
+        elif one > 0:
+            nums[i] = 1
+            one -= 1
+        else:
+            nums[i] = 2
+            two -= 1
+    print(nums)
+sortColors([2,0,2,1,1,0])
