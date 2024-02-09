@@ -7,14 +7,14 @@ def peakIndexInMountainArray(arr):
     right = len(arr) - 1
     while left <= right: 
 
-        mid = 1 + (right - left) // 2
+        mid = left + (right - left) // 2
 
         if arr[mid] > arr[mid-1] and arr[mid] > arr[mid + 1]:
             print (mid)
             break
         elif arr[mid] < arr[mid - 1]:
-            right = mid -1
+            right = mid 
         else:
-            left = mid + 1
+            left = mid 
 
-peakIndexInMountainArray([0,1,0])
+peakIndexInMountainArray([3,9,8,6,4])
