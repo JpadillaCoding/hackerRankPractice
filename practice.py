@@ -1,14 +1,20 @@
+def peakIndexInMountainArray(arr):
+    # find the peak index in mountain array
+    # Could brute force to go through and find largest number
+    # could use binary search to find an index where the
+    # left and right numbers are smaller
+    left = 0 
+    right = len(arr) - 1
+    while left <= right: 
 
-def nextGreatestLetter(letters, target):
-    length = len(letters)
-    pointer = length - 1
-    while pointer >= 0:
-        # check if its less than target and not -1
-        if (target == letters[pointer] or ord(target) > ord(letters[pointer])) and pointer == length-1:
-            print(letters[0])
-        elif target == letters[pointer] or ord(target) > ord(letters[pointer]):
-            print(letters[pointer + 1])
-        # check if less than target 
-        pointer -=1
-    print(letters[0])
-nextGreatestLetter(["c","f","j"], 'c')
+        mid = 1 + (right - left) // 2
+
+        if arr[mid] > arr[mid-1] and arr[mid] > arr[mid + 1]:
+            print (mid)
+            break
+        elif arr[mid] < arr[mid - 1]:
+            right = mid -1
+        else:
+            left = mid + 1
+
+peakIndexInMountainArray([0,1,0])
