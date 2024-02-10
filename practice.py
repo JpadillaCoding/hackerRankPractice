@@ -11,6 +11,9 @@ def findPeakElement(nums):
         mid = left + (right - left) // 2
 
         if (nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]) or (nums[mid] == nums[mid - 1] and nums[mid] > nums[mid + 1]) or (nums[mid] > nums[mid - 1] and nums[mid] == nums[mid + 1]):
+            #only first conditional is actually needed
+            # at first I thought I would need to check for same adjacent nums
+            # but question says this is not possible
             print(mid)
             break
         if nums[mid] < nums[mid+1]:
