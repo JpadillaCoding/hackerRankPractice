@@ -6,14 +6,16 @@ def findPeakElement(nums):
 
     left = 0 
     right = len(nums) - 1
-    while left <= right:
-        mid = left + (right - left) //2
+
+    while left < right:
+        mid = left + (right - left) // 2
 
         if (nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]) or (nums[mid] == nums[mid - 1] and nums[mid] > nums[mid + 1]) or (nums[mid] > nums[mid - 1] and nums[mid] == nums[mid + 1]):
             print(mid)
             break
         if nums[mid] < nums[mid+1]:
-            left = mid
+            left = mid + 1
         else:
-            right = mid
-findPeakElement([1,2,3,1])
+            right = mid - 1
+    print(left)
+findPeakElement([1,2,3,4])
