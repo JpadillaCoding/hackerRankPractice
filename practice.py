@@ -1,28 +1,39 @@
 def search(nums,target):
-    # binary search 
+    # binary search
+    # need to check if our mid is in left or right sorted array
+    # if on right, check if mid is less than left to check after pivot
+    # or chekc if greater than mid to look to right of mid
+    # else its on the left
+    # vice versa for right
+
     left = 0 
-    right = len(nums) - 1
+    right = len(nums) - 1 
 
     while left <= right:
-        mid = left + (right - left) // 2
-        if nums[mid] == target:
-            print(mid)
+        while left<right and nums[left] == nums[left+1]:
+            left+=1
+        while left<right and nums[right] == nums[right-1]:
+            right-=1
 
-        # mid is in the left section, we have to switch to right
-        if nums[left] <= nums[mid]:
-            # check if 
-            if target > nums[mid]:
+        mid = left + (right-left) // 2
+        if nums[mid] == target:
+            print(True)
+            return True
+        if nums[mid] >= nums[left]:
+            
+            if target < nums[left]:
                 left = mid + 1
-            elif target < nums[left]:
+            elif target > nums[mid]:
                 left = mid + 1
-            else:
+            else: 
                 right = mid - 1
         else:
-            if target < nums[mid]:
+            if target > nums[right]:
                 right = mid - 1
-            elif target > nums[right]:
+            elif target < nums[mid]:
                 right = mid - 1
-            else: 
+            else:
                 left = mid + 1
-    return -1
-search([4,5,6,7,0,1,2],0)
+    print(False)
+    return False
+search([1,0,1,1,1],0)
