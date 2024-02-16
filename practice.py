@@ -9,7 +9,7 @@ def searchMatrix(matrix, target):
 
         mid = left + (right - left) // 2
 
-        if matrix[mid][0] < target and matrix[mid][-1] > target:
+        if matrix[mid][0] <= target and matrix[mid][-1] >= target:
             innerLeft = 0
             innerRight = len(matrix[mid]) - 1
 
