@@ -1,35 +1,33 @@
-def search(nums,target):
-    # binary search
-    # need to check if our mid is in left or right sorted array
-    # if on right, check if mid is less than left to check after pivot
-    # or chekc if greater than mid to look to right of mid
-    # else its on the left
-    # vice versa for right
+def searchMatrix(matrix, target):
+    # make a function with a standard binary search for the ineer search
+    # make a binary search that checks the last digit of each sub
 
     left = 0 
-    right = len(nums) - 1 
+    right = len(matrix) - 1
 
     while left <= right:
 
-        mid = left + (right-left) // 2
-        if nums[mid] == target:
-            print(True)
-            return True
-        if nums[mid] >= nums[left]:
-            
-            if target < nums[left]:
-                left = mid + 1
-            elif target > nums[mid]:
-                left = mid + 1
-            else: 
-                right = mid - 1
+        mid = left + (right - left) // 2
+
+        if matrix[mid][0] < target and matrix[mid][-1] > target:
+            innerLeft = 0
+            innerRight = len(matrix[mid]) - 1
+
+            while innerLeft <= innerRight:
+                
+                innerMid = innerLeft + (innerRight - innerLeft) // 2
+                
+                if matrix[mid][innerMid] == target:
+                    print(True)
+                if matrix[mid][innerLeft] > target:
+                    innerRight = mid -1
+                else:
+                    innerLeft = mid + 1
+            print(False)
+
+        if matrix[left][-1] > target:
+            right = mid - 1
         else:
-            if target > nums[right]:
-                right = mid - 1
-            elif target < nums[mid]:
-                right = mid - 1
-            else:
-                left = mid + 1
+            left = mid + 1
     print(False)
-    return False
-search([1,0,1,1,1],0)
+searchMatrix([[1,3,5]], 1)
