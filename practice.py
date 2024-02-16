@@ -19,13 +19,13 @@ def searchMatrix(matrix, target):
                 
                 if matrix[mid][innerMid] == target:
                     print(True)
-                if matrix[mid][innerLeft] > target:
-                    innerRight = mid -1
+                if matrix[mid][innerMid] > target:
+                    innerRight = innerMid - 1
                 else:
-                    innerLeft = mid + 1
+                    innerLeft = innerMid + 1
             print(False)
 
-        if matrix[left][-1] > target:
+        if matrix[mid][-1] > target:
             right = mid - 1
         else:
             left = mid + 1
