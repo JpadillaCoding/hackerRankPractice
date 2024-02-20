@@ -1,33 +1,46 @@
-def searchMatrix(matrix, target):
-    # make a function with a standard binary search for the ineer search
-    # make a binary search that checks the last digit of each sub
+def findClosestElements(arr, k, x):
+    # regular binary search to find closest to x or exact
+    # return index with closest or exact to x 
+    # now search to items next to it?
+    # make left and right pointers 
+    # answer needs to be sorted
 
-    left = 0 
-    right = len(matrix) - 1
 
-    while left <= right:
+    def binarySearch(arr,target):
 
-        mid = left + (right - left) // 2
+        left = 0 
+        right = len(arr) - 1
 
-        if matrix[mid][0] <= target and matrix[mid][-1] >= target:
-            innerLeft = 0
-            innerRight = len(matrix[mid]) - 1
+        while left <= right:
 
-            while innerLeft <= innerRight:
-                
-                innerMid = innerLeft + (innerRight - innerLeft) // 2
-                
-                if matrix[mid][innerMid] == target:
-                    print(True)
-                if matrix[mid][innerMid] > target:
-                    innerRight = innerMid - 1
-                else:
-                    innerLeft = innerMid + 1
-            print(False)
+            mid = left + (right - left) // 2
 
-        if matrix[mid][-1] > target:
-            right = mid - 1
+            if arr[mid] == target:
+                return mid 
+            if target <= arr[mid]:
+                right = mid - 1
+
+            else:
+                left = mid + 1
+        
+        return mid 
+    
+    closest = binarySearch(arr, x)
+    print(closest)
+    # make a loop to remvoe from the counter k
+    # make 2 pointers left adn right to navigate both sides of the closest
+    # whiever is less left or right with min() then push onto array
+    # use method depending if it's added with left or right
+    left = closest
+    right = closest
+    while k > 1:
+
+        if (abs(x - arr[left - 1]) and left > 0) >= abs(arr[right + 1] - x):
+            left = left - 1
         else:
-            left = mid + 1
-    print(False)
-searchMatrix([[1,3,5]], 1)
+            right = right + 1
+        k = k - 1
+    print(arr[left:right + 1])
+
+
+findClosestElements([-2,-1,1,2,3,4,5],7,3)
