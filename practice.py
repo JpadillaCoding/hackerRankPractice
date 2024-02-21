@@ -1,46 +1,47 @@
-def findClosestElements(arr, k, x):
-    # regular binary search to find closest to x or exact
-    # return index with closest or exact to x 
-    # now search to items next to it?
-    # make left and right pointers 
-    # answer needs to be sorted
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
 
+def insert(root, value):
+    if root is None:
+        return TreeNode(value)
 
-    def binarySearch(arr,target):
+    if value < root.value:
+        root.left = insert(root.left, value)
+    elif value > root.value:
+        root.right = insert(root.right, value)
 
-        left = 0 
-        right = len(arr) - 1
+    return root
 
-        while left <= right:
+def build_tree(values):
+    root = None
+    for value in values:
+        root = insert(root, value)
+    return root
 
-            mid = left + (right - left) // 2
+# Example usage
+values = [4, 2, 7, 1, 3, 6, 9]
+root = build_tree(values)
 
-            if arr[mid] == target:
-                return mid 
-            if target <= arr[mid]:
-                right = mid - 1
+def invertTree(root):
+    if root:
+        temp = root.left
+        root.left = root.right
+        root.right = temp
 
-            else:
-                left = mid + 1
-        
-        return mid 
+        invertTree(root.left)
+        invertTree(root.right)
+    return root
+newRoot = invertTree(root)
+def printRoot(root):
     
-    closest = binarySearch(arr, x)
-    print(closest)
-    # make a loop to remvoe from the counter k
-    # make 2 pointers left adn right to navigate both sides of the closest
-    # whiever is less left or right with min() then push onto array
-    # use method depending if it's added with left or right
-    left = closest
-    right = closest
-    while k > 1:
+    if root:
+        print(root.left.value)
+        print(root.right.value)
 
-        if (abs(x - arr[left - 1]) <= abs(arr[right + 1] - x) ) and left > 0 :
-            left = left - 1
-        else:
-            right = right + 1
-        k = k - 1
-    print(arr[left:right + 1])
+        printRoot(root.left)
+        printRoot(root.right)
 
-
-findClosestElements([-2,-1,1,2,3,4,5],7,3)
+printRoot(newRoot)
