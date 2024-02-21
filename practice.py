@@ -21,10 +21,6 @@ def build_tree(values):
         root = insert(root, value)
     return root
 
-# Example usage
-values = [4, 2, 7, 1, 3, 6, 9]
-root = build_tree(values)
-
 def invertTree(root):
     if root:
         temp = root.left
@@ -34,14 +30,24 @@ def invertTree(root):
         invertTree(root.left)
         invertTree(root.right)
     return root
-newRoot = invertTree(root)
-def printRoot(root):
-    
+def inorder_traversal(root, result):
     if root:
-        print(root.left.value)
-        print(root.right.value)
+        inorder_traversal(root.left, result)
+        result.append(root.value)
+        inorder_traversal(root.right, result)
 
-        printRoot(root.left)
-        printRoot(root.right)
+# Original tree
+original_values = [4, 2, 7, 1, 3, 6, 9]
+original_root = build_tree(original_values)
 
-printRoot(newRoot)
+# Invert the tree
+inverted_root = invertTree(original_root)
+
+# Perform in-order traversal on both original and inverted trees
+original_result = []
+inverted_result = []
+
+inorder_traversal(original_root, original_result)
+inorder_traversal(inverted_root, inverted_result)
+
+print(inverted_result)
