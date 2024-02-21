@@ -35,7 +35,7 @@ def findClosestElements(arr, k, x):
     right = closest
     while k > 1:
 
-        if (abs(x - arr[left - 1]) and left > 0) >= abs(arr[right + 1] - x):
+        if (abs(x - arr[left - 1]) <= abs(arr[right + 1] - x) ) and left > 0 :
             left = left - 1
         else:
             right = right + 1
