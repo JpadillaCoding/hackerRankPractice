@@ -1,53 +1,33 @@
-class TreeNode:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+class Node:
+    def __init__(self, data, next=None) -> None:
+        self.data = data
+        self.next = next
 
-def insert(root, value):
-    if root is None:
-        return TreeNode(value)
+class LinkedList:
+    def __init__(self, head=None):
+        self.head = head
 
-    if value < root.value:
-        root.left = insert(root.left, value)
-    elif value > root.value:
-        root.right = insert(root.right, value)
+    def append(self, new_node):
+        current = self.head
+        if current:
+            while current.next:
+                current = current.next
+            current.next = new_node
+        else:
+            self.head = new_node
 
-    return root
 
-def build_tree(values):
-    root = None
-    for value in values:
-        root = insert(root, value)
-    return root
+node1 = Node(1)
+node2 = Node(2)
+node3 = Node(4)
+node4 = Node(1)
+node5 = Node(3)
+node6 = Node(4)
 
-def invertTree(root):
-    if root:
-        temp = root.left
-        root.left = root.right
-        root.right = temp
+list1 = LinkedList(node1)
+list1.append(node2)
+list1.append(node3)
 
-        invertTree(root.left)
-        invertTree(root.right)
-    return root
-def inorder_traversal(root, result):
-    if root:
-        inorder_traversal(root.left, result)
-        result.append(root.value)
-        inorder_traversal(root.right, result)
-
-# Original tree
-original_values = [4, 2, 7, 1, 3, 6, 9]
-original_root = build_tree(original_values)
-
-# Invert the tree
-inverted_root = invertTree(original_root)
-
-# Perform in-order traversal on both original and inverted trees
-original_result = []
-inverted_result = []
-
-inorder_traversal(original_root, original_result)
-inorder_traversal(inverted_root, inverted_result)
-
-print(inverted_result)
+list2 = LinkedList(node4)
+list2.append(node5)
+list2.append(node6)
