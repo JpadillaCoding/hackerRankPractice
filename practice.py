@@ -51,6 +51,22 @@ def hasCycle(self, head: Optional[ListNode]) -> bool:
         if slow == fast:
             return True
     return False
+def removeElement(head, val):
+    current = head
+    
+    if current is None:
+        return head
+
+    while current and current.next:
+
+        if current.next.val == val:
+            current.next = current.next.next
+        else:
+            current = current.next
+
+    if head.val == val:
+        head = head.next
+    return head
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
