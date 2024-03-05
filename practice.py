@@ -42,7 +42,7 @@ def merge(list1, list2):
 
     return dummy.next
 
-def hasCycle(self, head: Optional[ListNode]) -> bool:
+def hasCycle(self, head):
     slow = head
     fast = head
     while fast and fast.next:
@@ -67,6 +67,21 @@ def removeElement(head, val):
     if head.val == val:
         head = head.next
     return head
+
+def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    # make a anchor pointer to track the item before
+    # while curr is valid, reverse the pointer to the anchor
+
+    anchor = None
+
+    curr = head
+
+    while curr:
+        nxt = curr.next
+        curr.next = anchor
+        anchor = curr
+        curr = nxt
+    return anchor
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
