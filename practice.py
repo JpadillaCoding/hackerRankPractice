@@ -113,6 +113,16 @@ def isPalindrome(self, head: Optional[ListNode]) -> bool:
         slow = slow.next
 
     return True
+
+def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        fast = fast.next.next
+        slow = slow.next
+
+    return slow
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
