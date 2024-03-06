@@ -123,6 +123,38 @@ def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         slow = slow.next
 
     return slow
+
+def reorderList(self, head: Optional[ListNode]) -> None:
+    """
+    Do not return anything, modify head in-place instead.
+    """
+    slow = head
+    fast = head.next
+    prev = None
+
+    while fast and fast.next:
+        # find the middle, being slow
+        fast = fast.next.next
+        slow = slow.next
+
+    while slow:
+        # flip the node
+        nxt = slow.next
+        slow.next = prev
+        prev = slow
+        slow = nxt
+
+    head1 = head
+    head2 = prev
+    while head1 and head2:
+        tempHead1 = head1.next
+        tempHead2 = head2.next
+        
+        head1.next = head2
+        head2.next = tempHead1
+        
+        head1 = tempHead1
+        head2 = tempHead2
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
