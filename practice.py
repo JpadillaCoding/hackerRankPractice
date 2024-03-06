@@ -82,6 +82,37 @@ def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         anchor = curr
         curr = nxt
     return anchor
+
+def isPalindrome(self, head: Optional[ListNode]) -> bool:
+    slow = head
+    fast = head
+    prev = None
+
+    if head is None or head.next is None:
+        return True
+
+    while fast and fast.next:
+        fast = fast.next.next
+        #track next
+        nxt = slow.next
+        #slow.next points to previous
+        slow.next = prev
+        # prev will now be the curr
+        prev = slow
+        # curr.next is now next
+        slow = nxt
+
+    if fast:
+        slow = slow.next
+    print(prev)
+    print(slow)
+    while slow and prev:
+        if prev.val != slow.val:
+            return False
+        prev = prev.next
+        slow = slow.next
+
+    return True
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
