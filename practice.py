@@ -155,6 +155,44 @@ def reorderList(self, head: Optional[ListNode]) -> None:
         
         head1 = tempHead1
         head2 = tempHead2
+def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    # edge case of single
+    if not head.next:
+        if n == 1:
+            head = None
+            return head
+    # find end of list while reversing
+    curr = head
+    rev = None
+    # once at end then itierate by index of 1 to find nth node
+    while curr:
+        nxt = curr.next
+        curr.next = rev
+        rev = curr
+        curr = nxt
+    # as loop is iterating backwards, reflip the node pointer
+    curr = None
+    # make the flip before on the nth node
+    if n == 1:
+        temp = rev.next
+        rev = None
+        rev = temp
+        n = n - 1
+    while rev:
+        n = n - 1
+        # do logic to remove
+        if n == 1:
+            # edge case of nth node being last itieration
+            if rev.next.next == None:
+                rev.next = curr
+                return rev
+            else:
+                rev.next = rev.next.next
+        nxt = rev.next
+        rev.next = curr
+        curr = rev
+        rev = nxt
+    return head
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
