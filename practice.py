@@ -164,12 +164,12 @@ def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNod
     # find end of list while reversing
     curr = head
     rev = None
-    # once at end then itierate by index of 1 to find nth node
     while curr:
         nxt = curr.next
         curr.next = rev
         rev = curr
         curr = nxt
+    # once at end then itierate by index of 1 to find nth node
     # as loop is iterating backwards, reflip the node pointer
     curr = None
     # make the flip before on the nth node
@@ -193,6 +193,29 @@ def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNod
         curr = rev
         rev = nxt
     return head
+def removeNthFromEndOPTIMIZED(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    fast = slow = head
+    prev = None
+# case of single node 
+    if not head.next:
+        head = None
+        return head
+# make the gap between slow and fast
+    while n > 0:
+        fast = fast.next
+        n = n - 1
+# move fast to final LL node along with keeping the gap with slow
+    while fast:
+        fast = fast.next
+        prev = slow
+        slow = slow.next
+# Remove target node(slow) by using prev
+    if not prev:
+        # handle case of the node to remove being first the node in the LL
+        head = slow.next
+    else:
+        prev.next = slow.next
+    return(head)
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
