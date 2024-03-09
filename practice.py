@@ -216,6 +216,22 @@ def removeNthFromEndOPTIMIZED(self, head: Optional[ListNode], n: int) -> Optiona
     else:
         prev.next = slow.next
     return(head)
+def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+    oldToCopy = {None: None}
+    curr = head
+
+    while curr:
+        copy = Node(curr.val)
+        oldToCopy[curr] = copy
+        curr = curr.next
+
+    curr = head
+    while curr:
+        copy = oldToCopy[curr]
+        copy.next = oldToCopy[curr.next]
+        copy.random = oldToCopy[curr.random]
+        curr = curr.next
+    return oldToCopy[head]
 node1 = Node(1)
 node2 = Node(2)
 node3 = Node(4)
