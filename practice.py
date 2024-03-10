@@ -1,14 +1,16 @@
 def findDuplicate(self, nums: List[int]) -> int:
-    slow = 0
-    fast = 1
-    length = len(nums) - 1
-    while nums[fast] != nums[slow]:
-        if slow + 1 > length:
-            slow = 0
-        else:
-            slow = slow + 1
-        if fast + 2 > length:
-            fast = 0
-        else:
-            fast = fast + 2
-    return nums[fast]
+    slow = fast = 0
+
+    while True:
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+        if slow == fast:
+            break
+
+    slow2 = 0
+
+    while True:
+        slow = nums[slow]
+        slow2 = nums[slow2]
+        if slow == slow2:
+            return slow
