@@ -1,12 +1,19 @@
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        # use dfs recurse
-        if not p and not q:
-            return True
-        if not p and q:
-            return False
-        if p and not q:
-            return False
-        if p.val != q.val:
-            return False
-        return (self.isSameTree(p.left, q.left) and 
-        self.isSameTree(p.right, q.right))
+def minDepth(self, root: Optional[TreeNode]) -> int:
+    # implement bfs
+    # want the count to stop if it's an edge
+    if not root:
+        return 0
+    q = deque([root])
+    counter = 1
+    while q:
+
+        for i in range(len(q)):
+            node = q.popleft()
+            if not node.left and not node.right:
+                return counter
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+        counter = counter + 1
+    return counter 
