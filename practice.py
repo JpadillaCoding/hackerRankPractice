@@ -1,4 +1,12 @@
-def maxDepth(self, root: Optional[TreeNode], counter = 1) -> int:
-    if not root:
-        return 0
-    return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # use dfs recurse
+        if not p and not q:
+            return True
+        if not p and q:
+            return False
+        if p and not q:
+            return False
+        if p.val != q.val:
+            return False
+        return (self.isSameTree(p.left, q.left) and 
+        self.isSameTree(p.right, q.right))
