@@ -1,12 +1,9 @@
-class Solution:
-    def inorderTraversal(self, root):
-        result = []
-
-        def traverse(root, result):
-            if root is None:
-                return None
-            traverse(root.left, result)
-            result.append(root.val)
-            traverse(root.right, result)
-        traverse(root, result)
-        return result
+def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    if root is None:
+        return None
+    temp = root.left
+    root.left = root.right
+    root.right = temp
+    self.invertTree(root.left)
+    self.invertTree(root.right)
+    return root
